@@ -6,48 +6,39 @@ define("DB_SERVER","localhost");
 define("DB_USERNAME","root");
 define("DB_PASSWORD","");
 
-
-function openConnection(){
-	$cnx = mysql_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD);
-	
-	if (!$cnx) {
-		die('Connexion impossible : ' . mysql_error());
-	}else{
-		mysql_select_db(DB_NAME,$cnx) or die ("erreur de connexion base");
-	}
-	return $cnx;
-	
-}
-
-function closeConnection($cnx){
-	mysql_close($cnx);
-}
+global $bdd;
+$bdd = new PDO( 'mysql:host=' . DB_SERVER . ';dbname=' . DB_NAME, DB_USERNAME , DB_PASSWORD, array( PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ) );
 
 function getPosts($sWhere = ""){
+	global $bdd;
+		
 	$sql = "select * from posts ".$sWhere;
-	$result = mysql_query($sql); 
+	$result = $bdd -> query($sql);
 	$rows = array();
-	while ( $row = mysql_fetch_array($result)){
+	foreach ( $result as $row){
 		$rows[]= $row;
 	}
 	return $rows;
 }
 
 function getComments($sWhere = ""){
+	global $bdd;
+	
 	$sql = "select * from comments ".$sWhere;
-	$result = mysql_query($sql); 
+	$result = $bdd -> query($sql);
 	$rows = array();
-	while ( $row = mysql_fetch_array($result)){
+	foreach ( $result as $row){
 		$rows[]= $row;
 	}
 	return $rows;
 }
 
 function getUsers($sWhere = ""){
+	global $bdd;
 	$sql = "select * from users ".$sWhere;
-	$result = mysql_query($sql); 
+	$result = $bdd -> query($sql);
 	$rows = array();
-	while ( $row = mysql_fetch_array($result)){
+	foreach ( $result as $row){
 		$rows[]= $row;
 	}
 	return $rows;
@@ -55,12 +46,14 @@ function getUsers($sWhere = ""){
 
 
 function addComment($sEmail = "", $sContent = "", $sPostId = 0){
+	global $bdd;
 	$sql = "insert into comments (email,post_id,content) VALUES ('".$sEmail."',".$sPostId.",'".$sContent."')";
-	$result = mysql_query($sql);
+	$result = $bdd -> query($sql);
 }
 
 function addPost($sTitle = "", $sContent = ""){
+	global $bdd;
 	$sql = "insert into posts (title,content) VALUES ('".$sTitle."','".$sContent."')";
-	$result = mysql_query($sql);
+	$result = $bdd -> query($sql);
 }
 ?>

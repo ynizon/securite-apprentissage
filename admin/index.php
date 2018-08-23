@@ -1,8 +1,6 @@
 <?php
 require_once('../config.php');
 
-$cnx = openConnection();
-
 $users = getUsers();
 $bErreur = false;
 if (isset($_POST["password"])){
@@ -56,7 +54,3 @@ if (isset($_POST["password"])){
 		</div>
 	</body>
 </html>
-
-<?php
-closeConnection($cnx);
-?>

@@ -1,8 +1,6 @@
 <?php
 require_once('config.php');
 
-$cnx = openConnection();
-
 $posts = getPosts();
 ?>
 
@@ -51,7 +49,3 @@ $posts = getPosts();
 		</div>
 	</body>
 </html>
-
-<?php
-closeConnection($cnx);
-?>

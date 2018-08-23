@@ -1,8 +1,6 @@
 <?php
 require_once('../config.php');
 
-$cnx = openConnection();
-
 if (isset($_POST["title"])){
 	addPost($_POST["title"], $_POST["content"]);
 }
@@ -89,6 +87,18 @@ $comments = getComments();
 								<form method="post">
 									<input type="text" value="http://" name="url_image" /><input type="submit" class="btn btn-primary" value="Importer"/>
 								</form>
+								<ul>
+									<?php
+									$files = scandir("../images");
+									foreach ($files as $file){
+										if ($file != ".." and $file != "."){
+											?>
+											<li><?php echo $file;?></li>
+											<?php
+										}
+									}
+									?>
+								</ul>
 							</nav>							
 						</div>
 					</div>
@@ -97,7 +107,3 @@ $comments = getComments();
 		</div>
 	</body>
 </html>
-
-<?php
-closeConnection($cnx);
-?>

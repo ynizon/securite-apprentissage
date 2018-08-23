@@ -1,8 +1,6 @@
 <?php
 require_once('config.php');
 
-$cnx = openConnection();
-
 if (isset($_POST["comment"])){
 	addComment($_POST["email"],$_POST["comment"],$_GET["id"]);
 }
@@ -81,7 +79,3 @@ foreach ($posts as $post){
 		</div>
 	</body>
 </html>
-
-<?php
-closeConnection($cnx);
-?>

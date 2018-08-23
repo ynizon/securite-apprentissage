@@ -1,13 +1,11 @@
 <?php
 require_once('../config.php');
 
-$cnx = openConnection();
-
 $sTable = $_GET["mode"];
 $id  = $_GET["id"];
+global $bdd;
 $sql = "DELETE FROM ".$sTable." where id=".$id;
-$result = mysql_query($sql); 
-closeConnection($cnx);
+$result = $bdd -> query($sql);
 
-header ("location:index.php");
+header ("location:admin.php");
 ?>
