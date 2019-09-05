@@ -32,7 +32,8 @@ $posts = getPosts();
 										<li class=""><a href='article.php?id=<?php echo $post["id"];?>'><?php echo $post["title"];?></a></li>
 										<?php
 									}
-									?>									
+									?>
+									<li class=""><a href='iframe.php?iframe=iframe/xr.php'>Une iframe pour voir ce que c'est</a></li>									
 								</ul>					
 							</nav>
 							<br/>
