@@ -33,6 +33,18 @@ function getComments($sWhere = ""){
 	return $rows;
 }
 
+function getUser($sLogin = "", $sPassword = ""){
+	global $bdd;
+	$sql = "select * from users where email = '".$sLogin."' and password = '".$sPassword."'";
+
+	$result = $bdd -> query($sql);
+	$row = null;
+	foreach ( $result as $row){
+	}
+
+	return $row;
+}
+
 function getUsers($sWhere = ""){
 	global $bdd;
 	$sql = "select * from users ".$sWhere;

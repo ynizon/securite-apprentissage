@@ -1,16 +1,15 @@
 <?php
 require_once('../config.php');
 
-$users = getUsers();
+
 $bErreur = false;
 if (isset($_POST["password"])){
 	$bErreur = true;
-	foreach ($users as $user){
-		if ($_POST["password"] == $user["password"] and $_POST["login"] == $user["email"] ){
-			header("location:admin.php");
-			exit();
-		}
-	}	
+	$user = getUser($_POST["login"],$_POST["password"]);
+	if ($user != null){
+		header("location:admin.php");
+		exit();
+	}
 }
 
 ?>
