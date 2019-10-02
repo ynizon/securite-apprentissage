@@ -37,7 +37,8 @@ $posts = getPosts();
 								</ul>					
 							</nav>
 							<br/>
-							
+                                   <a href='commande.php'>Commander un produit</a>
+							<br/>
 							
 							<article>				
 								Vous devez inspecter le code et corriger toutes les failles de sécurité. Il y en a pas mal ;)<br/>
